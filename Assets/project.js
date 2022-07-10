@@ -1,6 +1,5 @@
 let pushProject = []
-
-let iconGrup = document.getElementById('icontech');
+let checkedBox = []
 
 function projectSubmit(event) {
     event.preventDefault()
@@ -8,20 +7,34 @@ function projectSubmit(event) {
     let title = document.getElementById("projectName").value
     let desc = document.getElementById("desc").value
     let image = document.getElementById("imageUpload")
-    let js = document.getElementById('js').checked
-    let html = document.getElementById('html').checked
-    let react = document.getElementById('react').checked
-    let css = document.getElementById('css').checked
+    let startDate = document.getElementById('startDate').value;
+    let endDate = document.getElementById('endDate').value
     
     image = URL.createObjectURL(image.files[0]);
+
+    // Noted : Ambil data checkbox
+    let checkboxSelector = document.getElementsByName('CB');
+
+    checkedBox = [];
+    for (let i = 0; i < checkboxSelector.length; i++) {
+        if (checkboxSelector[i].checked == true) {
+            checkedBox.push(checkboxSelector[i].value)
+        }
+    }
+
+    // console.log (checkedBox)
     
     let project = {
         title,
+        startDate,
+        endDate,
         desc,
         image,
+        checkedBox
     };
     // console.log(project)
     pushProject.push(project)
+    // console.log (pushProject)
     domInner()
 }
 
@@ -34,14 +47,18 @@ function domInner() {
         content.innerHTML += `
         <div class="post">
                     <img src="${pushProject[i].image}" alt="">
-                    <h3>${pushProject[i].title}</h3>
+                    <h3> <a href="detail.html"> ${pushProject[i].title} </a></h3>
                     <p class="duration">duration : ...</p>
                     <div class="article"><p> ${pushProject[i].desc}</p></div>
                     <div class="icontech">
-                        <i class="fa-brands fa-js-square"></i>
-                        <i class="fa-brands fa-css3-alt"></i>
-                        <i class="fa-brands fa-html5"></i>
-                        <i class="fa-brands fa-react"></i>
+                    ${(hello = () => {
+                        let iconGrup = ""
+                        for (let b = 0; b < checkedBox.length; b++) {
+                            iconGrup += `
+                                    <i class="fa-brands fa-${pushProject[i].checkedBox[b]}"></i>`
+                        }
+                        return iconGrup
+                    })()}
                     </div>
                     <div class="flex-btn">
                         <button class="delete">delete</button>

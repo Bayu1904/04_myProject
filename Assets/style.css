@@ -403,3 +403,55 @@ hr {
     border-radius: 8px;
     cursor: pointer;
 }
+
+/* detail */
+
+.details {
+    width: 1000px;
+    padding: 0 30px;
+    margin: auto;
+}
+.details h1 {
+    text-align: center;
+}
+.flex-detail {
+    display: flex;
+    justify-content: baseline;
+    max-height: 500px;
+}
+
+.left-detail {
+    flex: 70%;
+    padding :0;
+    text-align: center;
+
+}
+
+.left-detail img {
+    width: 400px;
+    height: auto;
+}
+
+.right-detail {
+    flex: 30%;
+}
+
+i {
+    font-size: 35px;
+    text-align: left;
+}
+
+td {
+    padding : 5px;
+}
+
+article {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-align: justify;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5) ;
+    text-indent: 0.5in;
+}
